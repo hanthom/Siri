@@ -13,11 +13,12 @@ var sayings = require('./siri-sayings');
 var server = http.createServer();
 
 var handleRequest = function(req, res) {
-	var index = randomMessage(sayings.length);
+	res.setHeader('Content-Type', 'application/json');
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	
 	if (req.method === 'GET') {
 		res.statusCode = 200;
-		res.setHeader('Content-Type', 'application/json');
-		res.setHeader('Access-Control-Allow-Origin', '*');
+		
 		// res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST');
 		// res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 		// res.setHeader('X-XSS-Protection', '1; mode=block'); XSS is cross sight scripting
@@ -31,8 +32,8 @@ var handleRequest = function(req, res) {
 
 	} else if (req.method === 'OPTIONS') {
 		res.statusCode = 200;
-		res.setHeader('Content-Type', 'application/json');
-		res.setHeader('Access-Control-Allow-Origin', '*');
+		// res.setHeader('Content-Type', 'application/json');
+		// res.setHeader('Access-Control-Allow-Origin', '*');
 		// res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST');
 		// res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 		// res.setHeader('X-XSS-Protection', '1; mode=block');
@@ -41,8 +42,7 @@ var handleRequest = function(req, res) {
 		res.end();
 	}
 
-
-	res.end(JSON.stringify(objectToSend));
+	// res.end(JSON.stringify(objectToSend));
 
 }
 
